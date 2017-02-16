@@ -1,0 +1,29 @@
+<h1>Add Recipe</h1>
+
+<%= form_tag "/recipes", method:  :post do %>
+  <div>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+  </div>
+  <div>
+    <%= label_tag :style %>
+    <%= text_field_tag :style %>
+  </div>
+  <div>
+    <%= label_tag :image_url %>
+    <%= text_field_tag :image_url %>
+  </div>
+  <div>
+    <%= label_tag :boil_time %>
+    <%= text_field_tag :boil_time %>
+  </div>
+  <div>
+    <%= label_tag :batch_size %>
+    <%= text_field_tag :batch_size %>
+  </div>
+  <div>
+    <%= label_tag :ibu %>
+    <%= text_field_tag :ibu %>
+  </div>
+  <%= submit_tag "Add Recipe" %>
+<% end %>
