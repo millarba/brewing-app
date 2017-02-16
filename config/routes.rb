@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   patch '/recipes/:id' => 'recipes#update'
   delete '/recipes/:id' => 'recipes#destroy'
 
+  get '/ingredients/new' => 'ingredients#new'
+  post '/ingredients' => 'ingredients#create'
+
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 

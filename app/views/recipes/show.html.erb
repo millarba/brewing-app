@@ -5,3 +5,15 @@
 <h2>Boil time: <%= @recipe.boil_time %></h2>
 <h2>Batch Size: <%= @recipe.batch_size %></h2>
 <h2>IBU: <%= @recipe.ibu %></h2>
+
+<%= form_tag "/ingredients/new", method:  :get do %>
+  <%= submit_tag "Add Ingredient" %>
+<% end %>
+
+<%= form_tag "/recipes/#{@recipe.id}/edit", method:  :get do %>
+  <%= submit_tag "Edit Recipe" %>
+<% end %>
+
+<%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
+  <%= submit_tag "Delete Recipe" %>
+<% end %>

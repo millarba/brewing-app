@@ -1,0 +1,13 @@
+<h1>Add Ingredient</h1>
+
+<%= form_tag "/ingredients", method:  :post do %>
+  <div>
+    <%= label_tag :category %>
+    <%= select_tag :category, options_for_select(["Grains", "Hops", "Yeast"])  %>
+  </div>
+  <div>
+    <%= label_tag :ingredient_name %>
+    <%= text_field_tag :ingredient_name %>
+  </div>
+  <%= submit_tag "Add Ingredient" %>
+<% end %>
