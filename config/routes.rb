@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/ingredients/new' => 'ingredients#new'
   post '/ingredients' => 'ingredients#create'
+  get '/ingredients/:id' => 'ingredients#show'
+
+  post '/recipe_ingredients' => 'recipe_ingredients#create'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

@@ -1,6 +1,7 @@
 <h1>Add Ingredient</h1>
 
 <%= form_tag "/ingredients", method:  :post do %>
+<%= hidden_field_tag :recipe_id, @recipe.id %>
   <div>
     <%= label_tag :category %>
     <%= select_tag :category, options_for_select(["Grains", "Hops", "Yeast"])  %>
@@ -8,6 +9,10 @@
   <div>
     <%= label_tag :ingredient_name %>
     <%= text_field_tag :ingredient_name %>
+  </div>
+  <div>
+    <%= label_tag :weight %>
+    <%= text_field_tag :weight %> <%= select_tag :measurement, options_for_select(["oz", "lb", "packet"]) %>
   </div>
   <%= submit_tag "Add Ingredient" %>
 <% end %>

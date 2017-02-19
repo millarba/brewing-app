@@ -1,29 +1,33 @@
+<% @recipe.errors.full_messages.each do |error| %>
+  <h2><%= error %></h2>
+<% end %>
+
 <h1>Add Recipe</h1>
 
 <%= form_tag "/recipes", method:  :post do %>
   <div>
     <%= label_tag :name %>
-    <%= text_field_tag :name %>
+    <%= text_field_tag :name, @recipe.name %>
   </div>
   <div>
     <%= label_tag :style %>
-    <%= text_field_tag :style %>
+    <%= text_field_tag :style, @recipe.style %>
   </div>
   <div>
     <%= label_tag :image_url %>
-    <%= text_field_tag :image_url %>
+    <%= text_field_tag :image_url, @recipe.image_url %>
   </div>
   <div>
     <%= label_tag :boil_time %>
-    <%= text_field_tag :boil_time %>
+    <%= text_field_tag :boil_time, @recipe.boil_time %>
   </div>
   <div>
     <%= label_tag :batch_size %>
-    <%= text_field_tag :batch_size %>
+    <%= text_field_tag :batch_size, @recipe.batch_size %>
   </div>
   <div>
     <%= label_tag :ibu %>
-    <%= text_field_tag :ibu %>
+    <%= text_field_tag :ibu, @recipe.ibu %>
   </div>
   <%= submit_tag "Add Recipe" %>
 <% end %>

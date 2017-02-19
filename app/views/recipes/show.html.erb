@@ -1,19 +1,34 @@
-<h1><%= @recipe.name %></h1>
-<h2><%= @recipe.style %></h2>
-<p>--------------------</p>
-<br>
-<h2>Boil time: <%= @recipe.boil_time %></h2>
-<h2>Batch Size: <%= @recipe.batch_size %></h2>
-<h2>IBU: <%= @recipe.ibu %></h2>
+<div class="center">
+  <h1><%= @recipe.name %></h1>
+  <h2><%= @recipe.style %></h2>
+  <p>--------------------</p>
+  <br>
+  <h2>Boil time: <%= @recipe.boil_time %> min.</h2>
+  <h2>Batch Size: <%= @recipe.batch_size %></h2>
+  <h2>IBU: <%= @recipe.ibu %></h2>
+  <p>--------------------</p>
+</div>
 
-<%= form_tag "/ingredients/new", method:  :get do %>
-  <%= submit_tag "Add Ingredient" %>
-<% end %>
+<div class="col-md-4">
+  <div>
+    <%= render "ingredients/new" %>
+  </div>
 
-<%= form_tag "/recipes/#{@recipe.id}/edit", method:  :get do %>
-  <%= submit_tag "Edit Recipe" %>
-<% end %>
+  <div>
+  <br>
+    <%= form_tag "/recipes/#{@recipe.id}/edit", method:  :get do %>
+      <%= submit_tag "Edit Recipe Details" %>
+    <% end %>
+  </div>
 
-<%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
-  <%= submit_tag "Delete Recipe" %>
-<% end %>
+  <%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
+    <%= submit_tag "Delete Recipe" %>
+  <% end %>
+</div>
+
+<div class="col-md-8">
+  <h2>Ingredients list:</h2>
+    <% @recipe_ingredients.each do |recipe_ingredient| %>
+      <h3><%= recipe_ingredient.ingredient.ingredient_name %> - <%= recipe_ingredient.ingredient.weight %> <%= recipe_ingredient.ingredient.measurement %></h3> 
+    <% end %>
+</div>

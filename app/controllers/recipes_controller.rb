@@ -18,15 +18,18 @@ class RecipesController < ApplicationController
                          batch_size: params[:batch_size],
                          ibu: params[:ibu]
                          )
-    @recipe.save
-
     
-
-    redirect_to "/recipes/#{@recipe.id}"
+    if @recipe.save
+      redirect_to "/recipes/#{@recipe.id}"
+    else
+      flash[:warning] = "Information missing"
+      render :new
+    end
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
   end
 
   def edit
