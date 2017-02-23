@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :comments
   has_many :brews
-  has_many :recipes, through: :brews
+  has_many :recipes
+  has_many :comments
+
 
   # validates :username, presence: true
   # validates :email, presence: true

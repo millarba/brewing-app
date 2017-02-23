@@ -19,9 +19,6 @@ class IngredientsController < ApplicationController
                                               ingredient_id: @ingredient.id
                                               )
     @recipe_ingredient.save
-     puts "***********************************"
-     puts @recipe_ingredient.errors.full_messages
-     puts "***********************************"
 
     flash[:success] = "Added #{@ingredient.weight} #{@ingredient.measurement} of  #{@ingredient.ingredient_name}"
     redirect_back(fallback_location: :new)
@@ -30,5 +27,9 @@ class IngredientsController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_ingredients = RecipeIngredient.where(recipe_id: @recipe.id)
+  end
+
+  def destroy
+    @ingredient = Ingredient.find()
   end
 end

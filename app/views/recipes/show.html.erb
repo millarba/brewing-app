@@ -1,4 +1,4 @@
-<div class="center">
+<div>
   <h1><%= @recipe.name %></h1>
   <h2><%= @recipe.style %></h2>
   <p>--------------------</p>
@@ -29,6 +29,18 @@
 <div class="col-md-8">
   <h2>Ingredients list:</h2>
     <% @recipe_ingredients.each do |recipe_ingredient| %>
-      <h3><%= recipe_ingredient.ingredient.ingredient_name %> - <%= recipe_ingredient.ingredient.weight %> <%= recipe_ingredient.ingredient.measurement %></h3> 
+      <h3><%= recipe_ingredient.ingredient.ingredient_name %> - <%= recipe_ingredient.ingredient.weight %> <%= recipe_ingredient.ingredient.measurement %> <%= form_tag "ingedients/#{recipe_ingredient.id}", method: :delete do %><%= submit_tag "Remove" %><% end %></h3> 
+    <% end %>
+    <br>
+</div>
+
+<div><p>---------------</p></div>
+
+<div>
+  <h2>Comments <%= render "comments/new" %></h2>
+  <br>
+    <% @comments.each do |comment| %>
+      <p class="comment"><%= comment.text %></p>
+      <br>
     <% end %>
 </div>

@@ -29,7 +29,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
+    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id]).includes(:ingredient)
+    @comments = Comment.where(commentable_id: params[:id])
   end
 
   def edit

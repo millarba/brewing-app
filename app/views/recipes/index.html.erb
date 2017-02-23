@@ -1,10 +1,11 @@
-<h1>Recipes</h1>
+<h1>RECIPES</h1>
+<p>-------------------</p>
 
 <% @recipes.each do |recipe| %>
-  <h1><%= recipe.name %></h1>
+  <h1><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h1>
   <h1><%= recipe.style %></h1>
   <p>-------------------</p>
-  <h2>Boil Time: <%= recipe.boil_time %></h2>
+  <h2>Boil Time: <%= recipe.boil_time %> min</h2>
   <h2>Batch Size: <%= recipe.batch_size %></h2>
   <h2>IBU: <%= recipe.ibu %></h2>
   <p>-------------------</p>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/' => 'recipes#index'
+  get '/recipes' => 'recipes#index'
   get '/recipes/new' => 'recipes#new'
   post '/recipes' => 'recipes#create'
   get '/recipes/:id' => 'recipes#show'
@@ -11,6 +12,11 @@ Rails.application.routes.draw do
   get '/ingredients/new' => 'ingredients#new'
   post '/ingredients' => 'ingredients#create'
   get '/ingredients/:id' => 'ingredients#show'
+  delete '/ingredients/:id' => 'ingredients#destroy'
+
+  get '/comments' => 'comments#index'
+  get '/comments/new' => 'comments#new'
+  post '/comments' => 'comments#create'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
