@@ -9,12 +9,16 @@
   <p>--------------------</p>
 </div>
 
+<% if current_user && current_user.id == @recipe.user_id %>
 <div class="col-md-4">
   <div>
     <%= render "ingredients/new" %>
   </div>
-
+<% end %>
   <div>
+  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
+    <%= submit_tag "Start a Brew!" %>
+  <% end %>
   <br>
     <%= form_tag "/recipes/#{@recipe.id}/edit", method:  :get do %>
       <%= submit_tag "Edit Recipe Details" %>
@@ -28,19 +32,25 @@
 
 <div class="col-md-8">
   <h2>Ingredients list:</h2>
-    <% @recipe_ingredients.each do |recipe_ingredient| %>
-      <h3><%= recipe_ingredient.ingredient.ingredient_name %> - <%= recipe_ingredient.ingredient.weight %> <%= recipe_ingredient.ingredient.measurement %> <%= form_tag "ingedients/#{recipe_ingredient.id}", method: :delete do %><%= submit_tag "Remove" %><% end %></h3> 
+    <% if @ingredients %>
+      <% @ingredients.each do |ingredient| %>
+        <h3><%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
+        <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
+          <%= submit_tag "Remove" %>
+        <% end %> 
+      <% end %>
     <% end %>
     <br>
 </div>
 
 <div><p>---------------</p></div>
 
-<div>
+<div class="left">
   <h2>Comments <%= render "comments/new" %></h2>
   <br>
     <% @comments.each do |comment| %>
+      <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
       <br>
-    <% end %>
+  <% end %>
 </div>

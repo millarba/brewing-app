@@ -11,8 +11,8 @@ class UsersController < ApplicationController
                       password: params[:password],
                       password_confirmation: params[:password_confirmation]
                       )
-    if user.save
-      session[:user_id] = user.id
+    if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Account Created"
       redirect_to '/'
     else
@@ -20,4 +20,10 @@ class UsersController < ApplicationController
       redirect_to '/signup'
     end
   end
+  
+    def show
+      @recipes = Recipe.where(user_id: current_user.id)
+      @brews = Brew.where(user_id: current_user.id)
+    end
+
 end

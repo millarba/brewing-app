@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id]).includes(:ingredient)
+    @ingredients = Ingredient.where(recipe_id: params[:id])
     @comments = Comment.where(commentable_id: params[:id])
   end
 
@@ -40,23 +40,38 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
 
-    @recipe.name = params[:name]
-    @recipe.style = params[:style]
-    @recipe.image_url = params[:image_url]
-    @recipe.boil_time = params[:boil_time]
-    @recipe.batch_size = params[:batch_size]
-    @recipe.ibu = params[:ibu]
+    if current_user && current_user.id == @recipe.user_id
+      @recipe.name = params[:name]
+      @recipe.style = params[:style]
+      @recipe.image_url = params[:image_url]
+      @recipe.boil_time = params[:boil_time]
+      @recipe.batch_size = params[:batch_size]
+      @recipe.ibu = params[:ibu]
 
-    @recipe.save
+      @recipe.save
 
-    redirect_to "/recipes/#{params[:id]}"
+      redirect_to "/recipes/#{params[:id]}"
+    else
+      flash[:warning] = "You can only edit your own recipes"
+      redirect_to "/recipes/#{params[:id]}"
+    end
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
-    @recipe.delete
 
-    redirect_to "/"
+    if current_user && current_user.id == @recipe.user_id
+      @recipe.delete
+
+      redirect_to "/"
+    else
+      flash[:warning] = "You can't delete other people's recipes!"
+      redirect_to "/recipes/#{params[:id]}"
+    end
+  end
+
+  def user_recipes
+    @recipes = Recipe.where(user_id: current_user.id)
   end
 
 end

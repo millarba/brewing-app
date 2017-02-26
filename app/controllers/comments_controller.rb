@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(
+                            user_id: current_user.id,
                             text: params[:text],
                             commentable_type: params[:commentable_type],
                             commentable_id: @commentable.id

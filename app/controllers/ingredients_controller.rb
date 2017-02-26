@@ -6,6 +6,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(
+                                  recipe_id: params[:recipe_id],
                                   category: params[:category],
                                   ingredient_name: params[:ingredient_name],
                                   weight: params[:weight],
@@ -13,23 +14,18 @@ class IngredientsController < ApplicationController
                                   )
     @ingredient.save
 
-
-    @recipe_ingredient = RecipeIngredient.new(
-                                              recipe_id: params[:recipe_id],
-                                              ingredient_id: @ingredient.id
-                                              )
-    @recipe_ingredient.save
-
     flash[:success] = "Added #{@ingredient.weight} #{@ingredient.measurement} of  #{@ingredient.ingredient_name}"
     redirect_back(fallback_location: :new)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: @recipe.id)
+    @ingredients = Ingredient.where(recipe_id: @recipe.id)
   end
 
   def destroy
-    @ingredient = Ingredient.find()
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.delete
+    redirect_back(fallback_location: :new)
   end
 end
