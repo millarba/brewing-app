@@ -15,7 +15,11 @@
     <%= render "ingredients/new" %>
   </div>
 <% end %>
-  <div>
+
+<div ng-app="app" ng-controller="appCtrl">
+
+<button id="commentToggle" ng-click="showHide()">Show</button>
+  <div ng-hide="isHidden">
   <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
     <%= submit_tag "Start a Brew!" %>
   <% end %>
@@ -24,6 +28,7 @@
       <%= submit_tag "Edit Recipe Details" %>
     <% end %>
   </div>
+</div>
 
   <%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
     <%= submit_tag "Delete Recipe" %>
@@ -52,5 +57,6 @@
       <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
       <br>
+      
   <% end %>
 </div>
