@@ -16,10 +16,10 @@
   </div>
 <% end %>
 
-<div ng-app="app" ng-controller="appCtrl">
 
-<button id="commentToggle" ng-click="showHide()">Show</button>
-  <div ng-hide="isHidden">
+
+
+  <div>
   <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
     <%= submit_tag "Start a Brew!" %>
   <% end %>
@@ -28,7 +28,6 @@
       <%= submit_tag "Edit Recipe Details" %>
     <% end %>
   </div>
-</div>
 
   <%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
     <%= submit_tag "Delete Recipe" %>
@@ -50,13 +49,24 @@
 
 <div><p>---------------</p></div>
 
-<div class="left">
+<div class="left" ng-app="app" ng-controller="appCtrl">
   <h2>Comments <%= render "comments/new" %></h2>
   <br>
     <% @comments.each do |comment| %>
       <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
       <br>
-      
+          <p ng-click="showHide(<%= comment.id %>)">Reply</p>
+            <div ng-show="checkHidden(<%= comment.id %>)">
+              <%= form_tag "/comments", method: :post do %>
+                  <%= hidden_field_tag :commentable_type, "Comment" %>
+                  <%=  hidden_field_tag :comment_id, comment.id %>
+                <div>
+                  <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
+                </div>
+                  <%= submit_tag "Post Comment" %>
+              <% end %>
+              <br>
+            </div>
   <% end %>
 </div>
