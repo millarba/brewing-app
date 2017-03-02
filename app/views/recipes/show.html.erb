@@ -53,6 +53,9 @@
   <h2>Comments <%= render "comments/new" %></h2>
   <br>
     <% @comments.each do |comment| %>
+      <p><% comment.comments.each do |comment_reply| %></p>
+        <%= comment_reply.text %>
+      <% end %>
       <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
       <br>
@@ -68,5 +71,6 @@
               <% end %>
               <br>
             </div>
+
   <% end %>
 </div>
