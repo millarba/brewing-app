@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require angular
 //= require app
+//= require countdown
 //= require_tree .

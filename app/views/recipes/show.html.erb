@@ -38,7 +38,7 @@
   <h2>Ingredients list:</h2>
     <% if @ingredients %>
       <% @ingredients.each do |ingredient| %>
-        <h3><%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
+        <h3><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
         <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
           <%= submit_tag "Remove" %>
         <% end %> 
@@ -53,9 +53,6 @@
   <h2>Comments <%= render "comments/new" %></h2>
   <br>
     <% @comments.each do |comment| %>
-      <p><% comment.comments.each do |comment_reply| %></p>
-        <%= comment_reply.text %>
-      <% end %>
       <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
       <br>
@@ -64,6 +61,7 @@
               <%= form_tag "/comments", method: :post do %>
                   <%= hidden_field_tag :commentable_type, "Comment" %>
                   <%=  hidden_field_tag :comment_id, comment.id %>
+                  <%= hidden_field_tag :recipe_id, @recipe.id %>
                 <div>
                   <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
                 </div>
@@ -71,6 +69,9 @@
               <% end %>
               <br>
             </div>
+      <p><% comment.comments.each do |comment_reply| %></p>
+        <%= comment_reply.text %>
+      <% end %>
 
   <% end %>
 </div>

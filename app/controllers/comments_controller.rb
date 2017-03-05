@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.new(
                             user_id: current_user.id,
                             text: params[:text],
@@ -18,7 +19,7 @@ class CommentsController < ApplicationController
                             )
     @comment.save
 
-    redirect_to "/recipes/#{@commentable.id}"
+    redirect_to "/recipes/#{@recipe.id}"
   end
 
   def find_commentable
