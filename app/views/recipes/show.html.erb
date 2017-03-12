@@ -66,9 +66,11 @@
               <br>
             </div>
       <p><% comment.comments.each do |comment_reply| %></p>
-        <p><%= comment_reply.user.username %>:</p>
-        <p class="comment"> <%= comment_reply.text %></p>
-        <p ng-click="showHide(<%= comment_reply.id %>)">Reply</p>
+        <p class="replyuser"><%= comment_reply.user.username %>:</p>
+        <div class="reply">
+        <p><%= comment_reply.text %></p>
+        </div>
+        <p  class="replyuser" ng-click="showHide(<%= comment_reply.id %>)">Reply</p>
             <div ng-show="checkHidden(<%= comment_reply.id %>)">
               <%= form_tag "/comments", method: :post do %>
                   <%= hidden_field_tag :commentable_type, "Comment" %>
@@ -86,6 +88,5 @@
                 <p class="comment"><%= comment_reply_2.text %></p>
               <% end %>
       <% end %>
-
   <% end %>
 </div>

@@ -1,12 +1,23 @@
 .center {
-  margin: auto;
+          margin: auto;
 }
 
 .comment {
-      width: 320px;
-      padding: 10px;
-      border: 1px solid gray;
-      margin: 0;
+          width: 320px;
+          padding: 10px;
+          border: 1px solid gray;
+          margin: 0;
+}
+
+.reply {
+        width: 320px;
+        padding: 10px;
+        border: 1px solid gray;
+        margin-left: 50px;
+}
+
+.replyuser {
+            margin-left: 50px;
 }
 
 .left {
