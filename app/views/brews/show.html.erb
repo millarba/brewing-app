@@ -1,1 +1,39 @@
-<h1><%= @brew.recipe.name %></h1>
+<div>
+  <h1><%= @brew.recipe.name %></h1>
+  <h2><%= @brew.recipe.style %></h2>
+    <p>--------------------</p>
+</div>
+
+<div class="col-md-6">
+  <h2>Ingredients list:</h2>
+    <% if @brew.recipe.ingredients %>
+      <% @brew.recipe.ingredients.each do |ingredient| %>
+        <h3><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
+        <% if current_user && current_user.id == @brew.recipe.user_id %>
+        <% end %> 
+      <% end %>
+    <% end %>
+<p>--------------------</p>
+</div>
+<div class="col-md-6">
+  <h2>Brew Notes:</h2>
+  <% if @brew.notes %>
+    <% @brew.notes.each do |note| %>
+      <p><%= note.text %></p>
+    <% end %>
+  <% end %>
+  <%= render '/notes/new' %>
+</div>
+
+<%= form_tag "brews/#{params[:id]}", method: :patch do %>
+  <div>
+    <%= label_tag :original_gravity %>
+    <%= text_field_tag :original_gravity, @brew.original_gravity %>
+  </div>
+  <div>
+    <%= label_tag :final_gravity %>
+    <%= text_field_tag :final_gravity, '', placeholder: "Add after fermenting" %>
+  </div>
+
+<%= submit_tag 'Save Changes' %>
+<% end %>

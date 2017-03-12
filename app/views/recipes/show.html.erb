@@ -9,28 +9,23 @@
   <p>--------------------</p>
 </div>
 
-<% if current_user && current_user.id == @recipe.user_id %>
 <div class="col-md-4">
-  <div>
+  <% if current_user && current_user.id == @recipe.user_id %>
     <%= render "ingredients/new" %>
-  </div>
-<% end %>
-
-
-
-
-  <div>
-  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
-    <%= submit_tag "Start a Brew!" %>
   <% end %>
-  <br>
+<br>
+
+  <% if current_user && current_user.id == @recipe.user_id %>
     <%= form_tag "/recipes/#{@recipe.id}/edit", method:  :get do %>
       <%= submit_tag "Edit Recipe Details" %>
     <% end %>
-  </div>
+    <%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
+      <%= submit_tag "Delete Recipe" %>
+    <% end %>
+  <% end %>
 
-  <%= form_tag "/recipes/#{@recipe.id}", method:  :delete do %>
-    <%= submit_tag "Delete Recipe" %>
+  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
+    <%= submit_tag "Start a Brew!" %>
   <% end %>
 </div>
 
@@ -39,28 +34,29 @@
     <% if @ingredients %>
       <% @ingredients.each do |ingredient| %>
         <h3><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
+        <% if current_user && current_user.id == @recipe.user_id %>
         <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
           <%= submit_tag "Remove" %>
+          <% end %>
         <% end %> 
       <% end %>
     <% end %>
-    <br>
 </div>
+<br>
 
 <div><p>---------------</p></div>
 
-<div class="left" ng-app="app" ng-controller="appCtrl">
+<div class="col-md-12" ng-app="app" ng-controller="appCtrl">
   <h2>Comments <%= render "comments/new" %></h2>
   <br>
     <% @comments.each do |comment| %>
       <p><%= comment.user.username %></p>
       <p class="comment"><%= comment.text %></p>
-      <br>
           <p ng-click="showHide(<%= comment.id %>)">Reply</p>
             <div ng-show="checkHidden(<%= comment.id %>)">
               <%= form_tag "/comments", method: :post do %>
                   <%= hidden_field_tag :commentable_type, "Comment" %>
-                  <%=  hidden_field_tag :comment_id, comment.id %>
+                  <%= hidden_field_tag :commentable_id, comment.id%>
                   <%= hidden_field_tag :recipe_id, @recipe.id %>
                 <div>
                   <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
@@ -70,7 +66,25 @@
               <br>
             </div>
       <p><% comment.comments.each do |comment_reply| %></p>
-        <%= comment_reply.text %>
+        <p><%= comment_reply.user.username %>:</p>
+        <p class="comment"> <%= comment_reply.text %></p>
+        <p ng-click="showHide(<%= comment_reply.id %>)">Reply</p>
+            <div ng-show="checkHidden(<%= comment_reply.id %>)">
+              <%= form_tag "/comments", method: :post do %>
+                  <%= hidden_field_tag :commentable_type, "Comment" %>
+                  <%= hidden_field_tag :commentable_id, comment_reply.id%>
+                  <%= hidden_field_tag :recipe_id, @recipe.id %>
+                <div>
+                  <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
+                </div>
+                  <%= submit_tag "Post Comment" %>
+              <% end %>
+              <br>
+            </div>
+              <% comment_reply.comments.each do |comment_reply_2|%>
+                <p><%= comment_reply_2.user.username %></p>
+                <p class="comment"><%= comment_reply_2.text %></p>
+              <% end %>
       <% end %>
 
   <% end %>

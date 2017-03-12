@@ -11,3 +11,8 @@
   </div>
   <%= submit_tag "Login" %>
 <% end %>
+<br>
+<h3> New Around Here? </h3>
+<%= form_tag "/signup", method: :get do %>
+  <%= submit_tag "Create Account" %>
+<% end %>

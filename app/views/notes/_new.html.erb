@@ -1,0 +1,10 @@
+<h3>Add Note</h3>
+
+<%= form_tag "/notes", method:  :post do %>
+<%= hidden_field_tag :brew_id, @brew.id %>
+  <div>
+    <%= label_tag :text %>
+    <%= text_area_tag :text, '', placeholder: "Add brew notes", size: "35x10" %>
+  </div>
+  <%= submit_tag "Add Note" %>
+<% end %>

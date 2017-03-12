@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :find_commentable
 
   def index
-    @comments = Comment.where(commentable_id: 4)
+
   end
 
   def new
@@ -10,16 +10,20 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @comment = Comment.new(
-                            user_id: current_user.id,
-                            text: params[:text],
-                            commentable_type: params[:commentable_type],
-                            commentable_id: @commentable.id
-                            )
-    @comment.save
-
-    redirect_to "/recipes/#{@recipe.id}"
+    if current_user
+      @recipe = Recipe.find(params[:recipe_id])
+      @comment = Comment.new(
+                              user_id: current_user.id,
+                              text: params[:text],
+                              commentable_type: params[:commentable_type],
+                              commentable_id: params[:commentable_id]
+                              )
+      @comment.save
+      redirect_to "/recipes/#{@recipe.id}"
+    else
+      flash[:warning] = "You most be logged in to comment"
+      redirect_to "/login"
+    end
   end
 
   def find_commentable

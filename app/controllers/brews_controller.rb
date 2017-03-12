@@ -6,16 +6,27 @@ class BrewsController < ApplicationController
   end
 
   def create
-    @brew = Brew.new(
-                      user_id: current_user.id,
-                      recipe_id: params[:recipe_id],
-                      notes: params[:notes],
-                      original_gravity: params[:original_gravity],
-                      final_gravity: params[:final_gravity]
-                      )
-    @brew.save
+    if current_user
+      @brew = Brew.new(
+                        user_id: current_user.id,
+                        recipe_id: params[:recipe_id],
+                        original_gravity: params[:original_gravity],
+                        final_gravity: params[:final_gravity]
+                        )
+       @brew.save
+      p @brew.errors.full_messages
+      redirect_to '/user'
 
-    redirect_to '/user'
+      @note = Note.new(
+                        brew_id: @brew.id,
+                        text: params[:text]
+                        )
+      @note.save
+      
+    else
+      flash[:warning] = "You must be logged in to record your brew!"
+      redirect_to '/login'
+    end
   end
 
   def show

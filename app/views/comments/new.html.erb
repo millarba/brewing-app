@@ -2,7 +2,7 @@
     <%= hidden_field_tag :commentable_type, "Recipe" %>
     <%=  hidden_field_tag :recipe_id, @recipe.id %>
   <div>
-    <%= text_area_tag :text, "Add a comment", cols: 25, rows: 3 %>
+    <%= text_area_tag :text, placeholder: "Add a comment", cols: 25, rows: 3 %>
   </div>
     <%= submit_tag "Post Comment" %>
 <% end %>

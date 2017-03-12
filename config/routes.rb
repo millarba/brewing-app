@@ -31,4 +31,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  get '/notes/new' => 'notes#new'
+  post '/notes' => 'notes#create'
+  
+
 end

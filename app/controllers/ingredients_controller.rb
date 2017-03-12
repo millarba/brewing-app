@@ -25,7 +25,7 @@ class IngredientsController < ApplicationController
 
   def destroy
     @ingredient = Ingredient.find(params[:id])
-    @ingredient.delete
+    @ingredient.destroy
     redirect_back(fallback_location: :new)
   end
 end

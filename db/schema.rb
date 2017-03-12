@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226212527) do
+ActiveRecord::Schema.define(version: 20170312190228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 20170226212527) do
     t.decimal  "weight",          precision: 4, scale: 2
     t.string   "measurement"
     t.integer  "recipe_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "brew_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
