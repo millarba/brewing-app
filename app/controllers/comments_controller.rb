@@ -26,6 +26,8 @@ class CommentsController < ApplicationController
     end
   end
 
+private
+
   def find_commentable
     @commentable = Comment.find(params[:comment_id]) if params[:comment_id]
     @commentable = Recipe.find(params[:recipe_id]) if params[:recipe_id]
