@@ -20,21 +20,53 @@
 </ul>
 </div>
 
-<div>
-  <h1>!!IMAGE PLACEHOLDER!!</h1>
-</div>
-
-
 <div ng-app="app">
   <div ng-controller="appCtrl">
+  <button ng-click="addTemp()">Get Temp</button>
+  <p>{{ message }}</p>
+    <div class="col-md-12" id="container" style="width:100%; height:400px;">
+    <script>
+    var chart;
+    chart = new Highcharts.chart('container', {
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Brew Temperature'
+          },
+          xAxis: {
+              categories: []
+          },
+          yAxis: {
+              title: {
+                  text: 'Temperature (°F)'
+              }
+          },
+          plotOptions: {
+              line: {
+                  dataLabels: {
+                      enabled: true
+                  },
+                  enableMouseTracking: false
+              }
+          },
+          series: [{
+              name: 'BrewTemp',
+              data: [3.9, 4.2, 5.7, 8.5]
+          }]
+      });
+    </script>
+  </div>
+
+    <div class="container">
     <button ng-click="startTimer()">Start Mash</button>
     <br>
     <div class="progress">
-      <div class="progress-bar progress-bar-success" style="width: {{ progress_count }}%"></div>
+      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress_count }}%"></div>
     </div>
-  </div>
-</div>
+    </div>
 
+<div class="container">
 <%= form_tag '/brews', method: :post do %>
 <%= hidden_field_tag :recipe_id, @recipe.id %>
   <div>
@@ -47,4 +79,7 @@
   </div>
   <%= submit_tag "Finish brew" %>
 <% end %>
+  </div>
+</div>
+</div>
 

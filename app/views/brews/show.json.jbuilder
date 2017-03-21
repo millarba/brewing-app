@@ -1,0 +1,1 @@
+json.partial! @brew, partial: 'brew', as: :brew
