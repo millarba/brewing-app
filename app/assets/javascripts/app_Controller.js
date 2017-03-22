@@ -38,7 +38,7 @@
           $http.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=").then(function(response) {
             console.log(response.data.result);
             if (response.data.result != currentTemp) {
-              tempArray.push(response.data.result);
+              tempArray.push(parseInt(response.data.result));
             }
             currentTemp = response.data.result;
             $scope.message = tempArray;
