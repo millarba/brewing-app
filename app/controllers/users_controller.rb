@@ -12,6 +12,7 @@ class UsersController < ApplicationController
                       password_confirmation: params[:password_confirmation]
                       )
     if @user.save
+      NotifierMailer.sample_email(@user).deliver_now
       session[:user_id] = @user.id
       flash[:success] = "Account Created"
       redirect_to '/'
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
       flash[:warning] = "Invalid Email or Password"
       redirect_to '/signup'
     end
+    p @user.errors.full_messages
   end
   
     def show

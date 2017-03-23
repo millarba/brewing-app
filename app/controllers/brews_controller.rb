@@ -14,7 +14,7 @@ class BrewsController < ApplicationController
                         final_gravity: params[:final_gravity]
                         )
        @brew.save
-      p @brew.errors.full_messages
+       NotifierMailer.bottle_email(@brew).deliver_later(wait_until: 1.minute.from_now)
       redirect_to '/user'
 
       @note = Note.new(

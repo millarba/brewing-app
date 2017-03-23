@@ -15,7 +15,7 @@
     };
 
     $scope.addTemp = function() {
-      $http.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=").then(function(response) {
+      $http.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=4652099c02c9beddddfbf6ff7f74ebd88c02825b").then(function(response) {
         console.log(response.data.result);
         $scope.message = response.data.result;
       })
@@ -35,7 +35,7 @@
       console.log(time);
 //every second add time to timer, fill progress bar, and push new temp to array
       var progressInterval = $interval(function(){
-          $http.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=").then(function(response) {
+          $http.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=4652099c02c9beddddfbf6ff7f74ebd88c02825b").then(function(response) {
             console.log(response.data.result);
             if (response.data.result != currentTemp) {
               tempArray.push(parseInt(response.data.result));
