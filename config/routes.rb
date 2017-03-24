@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get '/' => 'recipes#index'
+  post '/recipes/:recipe_id/comments', to: 'comments#create'
+  get '/recipes/:recipe_id/comments/new', to: 'comments#new', as: 'new_recipe_comment'
   get '/recipes' => 'recipes#index'
   get '/recipes/new' => 'recipes#new'
   post '/recipes' => 'recipes#create'
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   post '/brews' => 'brews#create'
   get '/brews/:id' => 'brews#show'
 
+  post '/comments/:comment_id/comments', to: 'comments#create'
+  get '/comments/:comment_id/comments/new', to: 'comments#new', as: 'new_comment_comment'
   get '/comments' => 'comments#index'
   get '/comments/new' => 'comments#new'
   post '/comments' => 'comments#create'

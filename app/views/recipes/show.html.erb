@@ -35,8 +35,8 @@
       <% @ingredients.each do |ingredient| %>
         <h3><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
         <% if current_user && current_user.id == @recipe.user_id %>
-        <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
-          <%= submit_tag "Remove" %>
+          <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
+            <%= submit_tag "Remove" %>
           <% end %>
         <% end %> 
       <% end %>
@@ -48,63 +48,16 @@
 
 
 <div class="col-md-12" ng-app="app" ng-controller="appCtrl">
-  <h2>Comments <%= render "comments/new" %></h2>
-  <br>
-    <% @comments.each do |comment| %>
-      <p><%= comment.user.username %></p>
-      <p class="comment"><%= comment.text %></p>
-          <p ng-click="showHide(<%= comment.id %>)">Reply</p>
-            <div ng-show="checkHidden(<%= comment.id %>)">
-              <%= form_tag "/comments", method: :post do %>
-                  <%= hidden_field_tag :commentable_type, "Comment" %>
-                  <%= hidden_field_tag :commentable_id, comment.id%>
-                  <%= hidden_field_tag :recipe_id, @recipe.id %>
-                <div>
-                  <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
-                </div>
-                  <%= submit_tag "Post Comment" %>
-              <% end %>
-              <br>
-            </div>
-            <ul>
-      <% comment.comments.each do |comment_reply| %>
-      <li>
-        <p class="replyuser"><%= comment_reply.user.username %>:</p>
-        <div class="reply">
-        <p><%= comment_reply.text %></p>
-        </div>
-        <p  class="replyuser" ng-click="showHide(<%= comment_reply.id %>)">Reply</p>
-            <div ng-show="checkHidden(<%= comment_reply.id %>)">
-              <%= form_tag "/comments", method: :post do %>
-                  <%= hidden_field_tag :commentable_type, "Comment" %>
-                  <%= hidden_field_tag :commentable_id, comment_reply.id%>
-                  <%= hidden_field_tag :recipe_id, @recipe.id %>
-                <div>
-                  <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
-                </div>
-                  <%= submit_tag "Post Comment" %>
-              <% end %>
-              <br>
-            </div>
-              <% comment_reply.comments.each do |comment_reply_2|%>
-                <p><%= comment_reply_2.user.username %></p>
-                <p class="comment"><%= comment_reply_2.text %></p>
-                <div ng-show="checkHidden(<%= comment_reply.id %>)">
-                              <%= form_tag "/comments", method: :post do %>
-                                  <%= hidden_field_tag :commentable_type, "Comment" %>
-                                  <%= hidden_field_tag :commentable_id, comment_reply_2.id%>
-                                  <%= hidden_field_tag :recipe_id, @recipe.id %>
-                                <div>
-                                  <%= text_area_tag :text, '', placeholder: "Add a comment", cols: 25, rows: 3 %>
-                                </div>
-                                  <%= submit_tag "Post Comment" %>
-                              <% end %>
-                              <br>
-                            </div>
-              <% end %>
-          <% end %>
-          </li>
-          </ul>
-    <% end %>
+  <h2>Comments</h2>
+
+  <%= form_tag "/recipes/#{@recipe.id}/comments", method: :post do %>
+  <div>
+    <%= text_area_tag :text, "", placeholder: "Add a comment", cols: 25, rows: 3 %>
+  </div>
+    <%= submit_tag "Post Comment" %>
+  <% end %>
+
+  <ul> <%= render partial: "comments/new", collection: @recipe.comments, as: :comment %> </ul>
+
 </div>
 <br>
