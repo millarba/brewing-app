@@ -5,17 +5,6 @@
 
   <h1>RECIPES</h1>
   <p>-------------------</p>
-
-  <% @recipes.each do |recipe| %>
-    <h1><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h1>
-    <h1><%= recipe.style %></h1>
-    <p>-------------------</p>
-    <h2>Boil Time: <%= recipe.boil_time %> min</h2>
-    <h2>Batch Size: <%= recipe.batch_size %></h2>
-    <h2>IBU: <%= recipe.ibu %></h2>
-    <p>-------------------</p>
-    <br>
-  <% end %>
 </div>
 
 
@@ -29,10 +18,10 @@
 
             <ul id="filters" class="filter font-inc">
               <li><a href="#" data-filter="*" class="current wow fadeInUp">All</a></li>
-              <li><a href="#" data-filter=".illustration" class="wow fadeInUp" data-wow-delay="0.2s">Illustration</a></li>
-              <li><a href="#" data-filter=".marketing" class="wow fadeInUp" data-wow-delay="0.4s">Marketing</a></li>
-              <li><a href="#" data-filter=".photography" class="wow fadeInUp" data-wow-delay="0.6s">Photography</a></li>
-              <li><a href="#" data-filter=".webdesign" class="wow fadeInUp" data-wow-delay="0.8s">Web Design</a></li>
+              <li><a href="#" data-filter=".ipa" class="wow fadeInUp" data-wow-delay="0.2s">IPA</a></li>
+              <li><a href="#" data-filter=".blonde" class="wow fadeInUp" data-wow-delay="0.4s">Blonde</a></li>
+              <li><a href="#" data-filter=".pale, .ipa" class="wow fadeInUp" data-wow-delay="0.6s">Pale Ale</a></li>
+              <li><a href="#" data-filter=".stout" class="wow fadeInUp" data-wow-delay="0.8s">Stout</a></li>
             </ul>
 
           </div>
@@ -46,7 +35,7 @@
 
         <!-- PORTFOLIO ITEM -->
   <% @recipes.each do |recipe| %>
-        <li class="work-item illustration webdesign">
+        <li class="work-item <%= recipe.style.downcase %>">
           <a href="/recipes/<%= recipe.id%>">
             <div class="work-image">
               <img src="assets/images/pint_glass.jpg" alt="">
@@ -54,7 +43,7 @@
             <div class="work-caption">
               <h3 class="work-title font-alt"><%= recipe.name %></h3>
               <div class="work-descr font-inc">
-                <%= recipe.style %>
+                <%= recipe.style.downcase %>
               </div>
             </div>
           </a>

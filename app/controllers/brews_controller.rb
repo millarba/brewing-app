@@ -33,4 +33,19 @@ class BrewsController < ApplicationController
     @brew = Brew.find(params[:id])
   end
 
+  def update
+    @brew = Brew.find(params[:id])
+
+    if current_user && current_user.id == @brew.user_id
+      @brew.original_gravity = params[:original_gravity]
+      @brew.final_gravity = params[:final_gravity]
+
+      @brew.save
+      redirect_back(fallback_location: :new)
+    else
+      flash[:warning] = "You can't edit other peoples' brews!"
+      redirect_to '/login'
+    end
+  end
+
 end

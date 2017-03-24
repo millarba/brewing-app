@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/recipes/:id/brews/new' => 'brews#new'
   post '/brews' => 'brews#create'
   get '/brews/:id' => 'brews#show'
+  patch '/brews/:id' => 'brews#update'
 
   post '/comments/:comment_id/comments', to: 'comments#create'
   get '/comments/:comment_id/comments/new', to: 'comments#new', as: 'new_comment_comment'

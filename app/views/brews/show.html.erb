@@ -25,14 +25,18 @@
   <%= render '/notes/new' %>
 </div>
 
-<%= form_tag "brews/#{params[:id]}", method: :patch do %>
+<%= form_tag "/brews/#{params[:id]}", method: :patch do %>
   <div>
     <%= label_tag :original_gravity %>
     <%= text_field_tag :original_gravity, @brew.original_gravity %>
   </div>
   <div>
     <%= label_tag :final_gravity %>
+    <% if @brew.final_gravity %>
+    <%= text_field_tag :final_gravity, @brew.final_gravity %>
+    <% else %>
     <%= text_field_tag :final_gravity, '', placeholder: "Add after fermenting" %>
+    <% end %>
   </div>
 
 <%= submit_tag 'Save Changes' %>
