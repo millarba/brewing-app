@@ -45,7 +45,8 @@
           })
           $scope.progress_count += parseFloat(time);
           console.log($scope.progress_count);
-          if ($scope.progress_count >= 100) { $interval.cancel(progressInterval); }
+          if ($scope.progress_count >= 100) { 
+            $interval.cancel(progressInterval); }
         }, 1000);
     };
 
