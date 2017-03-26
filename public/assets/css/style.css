@@ -639,7 +639,7 @@ Navbar
 }
 
 .navbar-custom .navbar-toggle .icon-bar {
-	background: #000;
+	background: #0087CC;
 }
 
 /* -------------------------------------------------------------------
@@ -728,7 +728,7 @@ Sections
 }
 
 .col-bg {
-	background: rgba(255, 255, 255, .9);
+	background: #5BAFD8;
 	padding: 140px 60px;
 }
 

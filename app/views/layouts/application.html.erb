@@ -49,12 +49,6 @@
     
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
@@ -78,7 +72,7 @@
   </nav>
 
   </div>
-    <section id="home" class="module-hero module-parallax module-fade bg-dark-30" data-background="/assets/images/background.jpg">
+    <section id="home" class="module-hero module-parallax module-fade bg-dark-30" data-background="/assets/images/background_3.jpeg">
 
     <div class="hs-caption container">
       <div class="caption-content">
@@ -86,7 +80,7 @@
           What will YouBrew?
         </div>
         <div class="hs-title-size-1 font-inc">
-          You brew you
+
         </div>
       </div>
     </div>
@@ -112,6 +106,12 @@
     <!-- PORTFOLIO -->
     
 <div class="container-fluid">
+  <% flash.each do |name, message| %>
+            <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong><%= name.upcase %></strong> <%= message %>
+            </div>
+  <% end %>
 
   <div class="row relative">
 
@@ -121,8 +121,10 @@
 
 </div>
 
+<section class="module-small"></section>
+
     <!-- ABOUT -->
-    <section class="module p-t-0 p-b-0" data-background="/assets/images/background_2.jpg">
+    <section class="module p-t-0 p-b-0" data-background="/assets/images/bottles.jpeg">
 
       <div class="container-fluid">
 
@@ -135,10 +137,6 @@
             <div class="module-subtitle font-inc">
               A place for likeminded brewers to gather their thoughts, ideas, and build a community
             </div>
-
-            <p>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.</p>
-
-            <p>To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages.</p>
 
             <ul class="social-list">
               <li><a href="#"><span class="icon-facebook"></span></a></li>

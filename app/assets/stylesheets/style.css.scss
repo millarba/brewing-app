@@ -3,14 +3,14 @@ body {
 }
 
 .center {
-          margin: auto;
+          text-align: center;
 }
 
 .comment {
-          width: 320px;
+          width: 250px;
           padding: 10px;
-          border: 1px solid gray;
           margin: 0;
+          background-color: white;
 }
 
 .reply {
@@ -34,4 +34,34 @@ body {
 
 ul {
   list-style-type: none;
+}
+
+.index {
+  // background-color: #5BAFD8;
+}
+
+.navbar-custom .navbar-custom .navbar-fixed-top{
+  background-color: #0087CC;
+}
+
+.module-small {
+    // background-color: #5BAFD8;
+    padding: 70px 0;
+}
+
+.title-text {
+  color: black;
+  text-align: center;
+}
+
+.vertical-divider:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.space {
+  margin-bottom: 30px;
 }

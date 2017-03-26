@@ -1,10 +1,10 @@
 <li>
 <div > 
-  <h4><%= comment.user.username %> :</h4>
+  <h4 ><%= comment.user.username %> :</h4>
   <p class="comment"> <%= comment.text %> </p>
 </div>
 
-<p ng-click="showHide(<%= comment.id %>)">Reply</p>
+<button ng-click="showHide(<%= comment.id %>)">Reply</button>
 <div ng-show="checkHidden(<%= comment.id %>)">
 
 <%= form_tag "/comments/#{comment.id}/comments", method: :post do %>

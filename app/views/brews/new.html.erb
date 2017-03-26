@@ -20,7 +20,7 @@
 </ul>
 </div>
 
-<div ng-app="app">
+<div class="col-md-12" ng-app="app">
   <div ng-controller="appCtrl">
     <div class="col-md-12" id="container" style="width:100%; height:400px;">
     <script>
@@ -97,11 +97,11 @@
     </script>
   </div>
 
-    <div class="container">
+    <div class="container col-md-12">
     <button ng-click="startTimer()">Start Mash</button>
     <br>
     <div class="progress">
-      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress_count }}%"></div>
+      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{ progress_count }}%">{{ Math.round(progress_count)}}%</div>
     </div>
     </div>
 

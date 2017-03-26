@@ -29,6 +29,7 @@
     $scope.progress_count = 0;
     var tempArray = [];
     var currentTemp = "";
+    $scope.completionPercentage = 0;
 
     $scope.startTimer = function() {
       var time = document.getElementById('hidden').innerHTML;
@@ -44,6 +45,7 @@
             $scope.message = tempArray;
           })
           $scope.progress_count += parseFloat(time);
+          $scope.completionPercentage += Math.round(time);
           console.log($scope.progress_count);
           if ($scope.progress_count >= 100) { 
             $interval.cancel(progressInterval); }
@@ -52,6 +54,7 @@
 
 
   window.scope = $scope;
+  $scope.Math = window.Math;
 
   });
 }());

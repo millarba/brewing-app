@@ -1,8 +1,8 @@
+<div class="index">
 <div ng-app="app">
 <div ng-controller="appCtrl">
 </div>
-  <h1>RECIPES</h1>
-  <p>-------------------</p>
+  <h1 class="title-text">RECIPES</h1>
 </div>
 
 
@@ -31,12 +31,12 @@
       <!-- PORTFOLIO LIST -->
       <ul id="works-grid" class="works-grid works-grid-masonry works-grid-3 works-hover-w">
 
-        <!-- PORTFOLIO ITEM -->
+        <!-- PORTFOLIO ITEMS -->
   <% @recipes.each do |recipe| %>
         <li class="work-item <%= recipe.style.downcase %>">
           <a href="/recipes/<%= recipe.id%>">
             <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
+              <img src="<%= recipe.image_url %>" alt="">
             </div>
             <div class="work-caption">
               <h3 class="work-title font-alt"><%= recipe.name %></h3>
@@ -47,105 +47,11 @@
           </a>
         </li>
   <% end %>
-        <!-- /PORTFOLIO ITEM -->
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item marketing photography">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Bag MockUp</h3>
-              <div class="work-descr font-inc">
-                Marketing
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
-
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item illustration photography">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Disk Cover</h3>
-              <div class="work-descr font-inc">
-                Illustration
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
-
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item marketing photography">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Business Card</h3>
-              <div class="work-descr font-inc">
-                Photography
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
-
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item illustration webdesign">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Business Cards</h3>
-              <div class="work-descr font-inc">
-                Webdesign
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
-
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item marketing webdesign">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Business Cards in paper clip</h3>
-              <div class="work-descr font-inc">
-                Marketing
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
-
-        <!-- PORTFOLIO ITEM -->
-        <li class="work-item marketing webdesign">
-          <a href="portfolio-single-1.html">
-            <div class="work-image">
-              <img src="assets/images/pint_glass.jpg" alt="">
-            </div>
-            <div class="work-caption">
-              <h3 class="work-title font-alt">Business Cards in paper clip</h3>
-              <div class="work-descr font-inc">
-                Marketing
-              </div>
-            </div>
-          </a>
-        </li>
-        <!-- /PORTFOLIO ITEM -->
+        <!-- /PORTFOLIO ITEMS -->
 
       </ul>
       <!-- /PORTFOLIO LIST -->
 
     </section>
     <!-- /PORTFOLIO -->
+    </div>

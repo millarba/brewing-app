@@ -1,16 +1,18 @@
 <div>
-  <h1><%= @recipe.name %></h1>
-  <h2><%= @recipe.style %></h2>
-  <p>--------------------</p>
+  <div class="title-text">
+    <h1><%= @recipe.name %></h1>
+    <h2><%= @recipe.style %></h2>
+  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
+    <%= submit_tag "Start a Brew!" %>
+  <% end %>
+  </div>
   <br>
-  <h2>Boil time: <%= @recipe.boil_time %> min.</h2>
-  <h2>Batch Size: <%= @recipe.batch_size %></h2>
-  <h2>IBU: <%= @recipe.ibu %></h2>
-  <p>--------------------</p>
+  <h2 class="col-md-6">Recipe Info <br>Boil time: <%= @recipe.boil_time %> min. <br>Batch Size: <%= @recipe.batch_size %> <br>IBU: <%= @recipe.ibu %> </h2>
+
 </div>
 
-<div class="col-md-4">
   <% if current_user && current_user.id == @recipe.user_id %>
+<div class="well col-md-6">
     <%= render "ingredients/new" %>
   <% end %>
 <br>
@@ -23,31 +25,25 @@
       <%= submit_tag "Delete Recipe" %>
     <% end %>
   <% end %>
-
-  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
-    <%= submit_tag "Start a Brew!" %>
-  <% end %>
 </div>
 
-<div class="col-md-8">
-  <h2>Ingredients list:</h2>
+<div class="col-md-12 space">
+  <h1>Ingredient List</h1>
     <% if @ingredients %>
       <% @ingredients.each do |ingredient| %>
+      <div class="col-md-6">
         <h3><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %> </h3>
         <% if current_user && current_user.id == @recipe.user_id %>
           <%= form_tag "/ingredients/#{ingredient.id}", method: :delete do %>
             <%= submit_tag "Remove" %>
           <% end %>
         <% end %> 
+        </div>
       <% end %>
     <% end %>
 </div>
-<br>
 
-<div><p>---------------</p></div>
-
-
-<div class="col-md-12" ng-app="app" ng-controller="appCtrl">
+<div class="well col-md-12" ng-app="app" ng-controller="appCtrl">
   <h2>Comments</h2>
 
   <%= form_tag "/recipes/#{@recipe.id}/comments", method: :post do %>
