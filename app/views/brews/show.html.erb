@@ -1,10 +1,10 @@
 <div>
-  <h1><%= @brew.recipe.name %></h1>
-  <h2><%= @brew.recipe.style %></h2>
-    <p>--------------------</p>
+  <h1 class="header-text center"><%= @brew.recipe.name %></h1>
+  <h2 class="center"><%= @brew.recipe.style %> brewed on <%= @brew.created_at.strftime("%b %d, %Y") %></h2>
+
 </div>
 
-<div class="col-md-6">
+<div class="well col-md-6">
   <h2>Ingredients list:</h2>
     <% if @brew.recipe.ingredients %>
       <% @brew.recipe.ingredients.each do |ingredient| %>
@@ -13,18 +13,21 @@
         <% end %> 
       <% end %>
     <% end %>
-<p>--------------------</p>
+
 </div>
 <div class="col-md-6">
   <h2>Brew Notes:</h2>
   <% if @brew.notes %>
     <% @brew.notes.each do |note| %>
-      <p><%= note.text %></p>
+      <p><%= note.text %> | <%= note.created_at.strftime("%b %d, %Y") %></p>
     <% end %>
   <% end %>
   <%= render '/notes/new' %>
 </div>
 
+<div class="col-md-12 space"></div>
+
+<div class="well col-md-12 center">
 <%= form_tag "/brews/#{params[:id]}", method: :patch do %>
   <div>
     <%= label_tag :original_gravity %>
@@ -39,6 +42,6 @@
     <% end %>
   </div>
 
-<%= submit_tag 'Save Changes' %>
+<%= submit_tag 'Save All Changes' %>
 <% end %>
-<br>
+</div>

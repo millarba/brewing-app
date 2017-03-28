@@ -48,7 +48,7 @@
                             
                         setInterval(function() {
                           $.get("https://api.particle.io/v1/devices/360041000a47353138383138/brew_tmp?access_token=4652099c02c9beddddfbf6ff7f74ebd88c02825b", function(data) {  
-                            var temp = parseInt(data["result"]);
+                            var temp = parseFloat(data["result"]);
                             var x = (new Date()).getTime(),
                                 y = temp;
                             series.addPoint([x,y], true, false);
@@ -118,7 +118,7 @@
 <%= hidden_field_tag :recipe_id, @recipe.id %>
   <div>
    <%= label_tag :text %>
-   <%= text_area_tag :text, '', placeholder: "Add brew notes", size: "35x10" %>
+   <%= text_area_tag :text, '', placeholder: "Add brew notes", size: "100x10" %>
   </div>
   <div>
     <%= label_tag :original_gravity %>
