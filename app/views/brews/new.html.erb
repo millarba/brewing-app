@@ -1,4 +1,4 @@
-<h1>Your Brew</h1>
+<h1 class="header-text form_center">Your Brew</h1>
 
 <h2><%= @recipe.name %> - <%= @recipe.style %></h2>
 
@@ -6,10 +6,10 @@
  <%= @recipe.mash_duration %>
 </div>
 
-<div class="col-md-6"><h3>Ingredients:</h3>
+<div class="col-md-6 well"><h3>Ingredients:</h3>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %></li>
+    <li><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %></li>
   <% end %>
 </ul>
 </div>
@@ -101,11 +101,19 @@
     <button ng-click="startTimer()">Start Mash</button>
     <br>
     <div class="progress">
-      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{ progress_count }}%">{{ Math.round(progress_count)}}%</div>
+      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{ progressCount }}%">{{ Math.round(progressCount)}}%</div>
+    </div>
+    </div>
+    <div class="container col-md-12">
+    <button ng-click="startBoil()">Start Hop Boil</button>
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: {{ boilProgress }}%">{{ boilProgress}}%</div>
     </div>
     </div>
 
-<div class="container">
+
+<div class="container form_center col-md-12 well">
 <%= form_tag '/brews', method: :post do %>
 <%= hidden_field_tag :recipe_id, @recipe.id %>
   <div>
@@ -119,6 +127,5 @@
   <%= submit_tag "Finish brew" %>
 <% end %>
   </div>
-</div>
 </div>
 

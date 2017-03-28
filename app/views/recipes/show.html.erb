@@ -1,13 +1,16 @@
 <div>
   <div class="title-text">
-    <h1><%= @recipe.name %></h1>
-    <h2><%= @recipe.style %></h2>
+    <h1 class="header-text"><%= @recipe.name %></h1>
+    <h4>-<%= @recipe.style %>-</h4>
   <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
     <%= submit_tag "Start a Brew!" %>
   <% end %>
   </div>
   <br>
-  <h2 class="col-md-6">Recipe Info <br>Boil time: <%= @recipe.boil_time %> min. <br>Batch Size: <%= @recipe.batch_size %> <br>IBU: <%= @recipe.ibu %> </h2>
+  <div class="col-md-6">
+    <h2 class="header-text">Recipe Info </h2>
+    <p>Boil time: <%= @recipe.boil_time %> min. <br>Batch Size: <%= @recipe.batch_size %> <br>IBU: <%= @recipe.ibu %></p> 
+  </div>
 
 </div>
 
@@ -28,7 +31,7 @@
 </div>
 
 <div class="col-md-12 space">
-  <h1>Ingredient List</h1>
+  <h1 class="header-text ">Ingredient List</h1>
     <% if @ingredients %>
       <% @ingredients.each do |ingredient| %>
       <div class="col-md-6">
@@ -44,7 +47,7 @@
 </div>
 
 <div class="well col-md-12" ng-app="app" ng-controller="appCtrl">
-  <h2>Comments</h2>
+  <h2 class="header-text">Comments</h2>
 
   <%= form_tag "/recipes/#{@recipe.id}/comments", method: :post do %>
   <div>
