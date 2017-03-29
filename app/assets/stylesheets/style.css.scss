@@ -1,5 +1,5 @@
-body {
-  background-image: url('small-steps.png');
+.wrapper {
+  background-image: url('small_steps.png');
 }
 
 .center {
@@ -72,5 +72,13 @@ ul {
 }
 
 .header-text {
+  font-weight: bold;
+}
+
+.well {
+  background-color: #c5cacc !important;
+}
+
+.bold {
   font-weight: bold;
 }

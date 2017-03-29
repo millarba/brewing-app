@@ -1,31 +1,33 @@
-<div class="col-md-6">
+<div class="col-md-4">
 <h1 class="center header-text">YOUR RECIPES</h1>
 <% @starter_recipes.each do |recipe| %>
   <div class="well center">
-  <h3><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h3>
-  <h4><%= recipe.style %></h4>
-  <p>-------------------</p>
-  <h5>Batch Size: <%= recipe.batch_size %></h5>
-  <h5>IBU: <%= recipe.ibu %></h5>
-  <p>-------------------</p>
-  <br>
+    <div class="large-font">
+      <h3><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h3>
+    </div>
+    <h4><%= recipe.style %></h4>
+    <p>-------------------</p>
+    <h5>Batch Size: <%= recipe.batch_size %></h5>
+    <h5>IBU: <%= recipe.ibu %></h5>
+    <p>-------------------</p>
+    <br>
   </div>
 <% end %>
 <% @recipes.each do |recipe| %>
   <div class="well center">
-  <h3><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h3>
-  <h4><%= recipe.style %></h4>
-  <p>-------------------</p>
-  <h5>Boil Time: <%= recipe.boil_time %> min</h5>
-  <h5>Batch Size: <%= recipe.batch_size %></h5>
-  <h5>IBU: <%= recipe.ibu %></h5>
-  <p>-------------------</p>
-  <br>
+    <h3><a href="/recipes/<%= recipe.id%>"><%= recipe.name %></a></h3>
+    <h4><%= recipe.style %></h4>
+    <p>-------------------</p>
+    <h5>Boil Time: <%= recipe.boil_time %> min</h5>
+    <h5>Batch Size: <%= recipe.batch_size %></h5>
+    <h5>IBU: <%= recipe.ibu %></h5>
+    <p>-------------------</p>
+    <br>
   </div>
 <% end %>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-8">
   <h1 class="center header-text">YOUR BREWS</h1>
   <% if @brews %>
     <% @brews.each do |brew| %>

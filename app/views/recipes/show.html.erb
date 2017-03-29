@@ -1,21 +1,27 @@
-<div>
-  <div class="title-text">
-    <h1 class="header-text"><%= @recipe.name %></h1>
+<div class="title-text space">
+  <h1 class="header-text"><%= @recipe.name %></h1>
     <h4>-<%= @recipe.style %>-</h4>
-  <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
-    <%= submit_tag "Start a Brew!" %>
-  <% end %>
-  </div>
-  <br>
-  <div class="col-md-6">
-    <h2 class="header-text">Recipe Info </h2>
-    <p>Boil time: <%= @recipe.boil_time %> min. <br>Batch Size: <%= @recipe.batch_size %> <br>IBU: <%= @recipe.ibu %></p> 
-  </div>
+</div>
+<div class="space center">
+      <%= form_tag "/recipes/#{@recipe.id}/brews/new", method: :get do %>
+        <%= submit_tag "Start a Brew!" %>
+      <% end %>
+</div>
 
+<div class="col-md-4 center">
+  <h3 class="bold">BOIL TIME</h3> <h3> <%= @recipe.boil_time %> min </h3>
+</div>
+
+<div class="col-md-4 center">
+  <h3 class="bold">BATCH SIZE</h3> <h3> <%= @recipe.batch_size %></h3>
+</div>
+
+<div class="col-md-4 center space">
+  <h3 class="bold">IBU</h3> <h3><%= @recipe.ibu %></p></h3>
 </div>
 
   <% if current_user && current_user.id == @recipe.user_id %>
-<div class="well col-md-6">
+<div class="well col-md-12 center">
     <%= render "ingredients/new" %>
   <% end %>
 <br>
@@ -31,7 +37,7 @@
 </div>
 
 <div class="col-md-12 space">
-  <h1 class="header-text ">Ingredient List</h1>
+  <h1 class="header-text center">Ingredient List</h1>
     <% if @ingredients %>
       <% @ingredients.each do |ingredient| %>
       <div class="col-md-6">
