@@ -9,7 +9,9 @@
 <div class="col-md-6 well"><h3>Ingredients:</h3>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %></li>
+    <div class="col-md-6">
+      <li><%= ingredient.category %> | <%= ingredient.ingredient_name %> - <%= ingredient.weight %> <%= ingredient.measurement %></li>
+    </div>
   <% end %>
 </ul>
 </div>
