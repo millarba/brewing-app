@@ -15,7 +15,7 @@ class BrewsController < ApplicationController
                         )
        @brew.save
        NotifierMailer.bottle_email(@brew).deliver_later(wait_until: 1.minute.from_now)
-      redirect_to '/user'
+      redirect_to "/recipes/#{params[:recipe_id]}"
 
       @note = Note.new(
                         brew_id: @brew.id,

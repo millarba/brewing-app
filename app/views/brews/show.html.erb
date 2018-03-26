@@ -15,6 +15,16 @@
     <% end %>
 
 </div>
+
+<%= form_tag "/notes", method:  :post do %>
+<%= hidden_field_tag :brew_id, @brew.id %>
+  <div>
+    <%= label_tag :text %>
+    <%= text_area_tag :text, '', placeholder: "Add brew notes", size: "75x10" %>
+  </div>
+  <%= submit_tag "Add Note" %>
+<% end %>
+
 <div class="col-md-6">
   <h2>Brew Notes:</h2>
   <% if @brew.notes %>

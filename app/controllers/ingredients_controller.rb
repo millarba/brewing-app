@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
                                   )
     @ingredient.save
 
-    flash[:success] = "Added #{@ingredient.weight} #{@ingredient.measurement} of  #{@ingredient.ingredient_name}"
+    flash[:success] = "Added #{@ingredient.weight} #{@ingredient.measurement} of #{@ingredient.ingredient_name}"
     redirect_back(fallback_location: :new)
   end
 
